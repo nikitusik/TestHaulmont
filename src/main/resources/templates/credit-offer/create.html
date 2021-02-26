@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Add new credit for client</h2>
+<span th:utext="${creditOffer.credit.limit}"></span>
+<form action="#" th:action="@{/credit-offer/create}" th:object="${creditOffer}" method="post">
+
+    <input type="hidden" th:field="*{id}" id="id">
+    <input type="hidden" th:field="*{client}" id="client">
+    <input type="hidden" th:field="*{credit}" id="credit">
+
+    <input th:type = "number" th:max="${creditOffer.credit.limit}" th:field="*{sumCredit}" placeholder="Enter sum credit">
+    <input type = "number" max="120" th:field="*{month}" placeholder="Enter count month">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

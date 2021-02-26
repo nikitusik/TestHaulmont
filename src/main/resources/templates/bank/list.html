@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Bank</h2>
+<a href="/banks/create">Apply new credit</a>
+<table border="3">
+    <thead>
+    <tr>
+        <th>Client</th>
+        <th>Passport</th>
+        <th>Credit</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bank : ${banks}">
+        <td th:text="${bank.getClient.getFirstName + ' ' + bank.getClient.getLastName}"></td>
+        <td th:text="${bank.getClient.getPassport}"></td>
+        <td th:text="${bank.getCredit.getName}"></td>
+
+        <td><a th:href="@{/banks/delete/{id}(id=${bank.id})}">Delete</a></td>
+        <td><a th:href="@{/banks/update/{id}(id=${bank.id})}">Update</a></td>
+        <td><a th:href="@{/banks/about/{id}(id=${bank.id})}">About</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

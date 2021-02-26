@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Apply new credit</title>
+</head>
+<body>
+<form action="#" th:action="@{/banks/create}" th:object="${bank}" method="post">
+
+    <label>Select client: </label>
+    <select th:field="*{client.id}">
+        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.firstName + ' ' + client.lastName + ' , passport: ' + client.passport}"></option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('client')}" th:errors="*{client}">Client error</div>
+    <br>
+
+
+    <label>Select credit: </label>
+    <select th:field="*{credit.id}">
+        <option th:each="credit : ${credits}" th:value="${credit.id}" th:text="${credit.name}"></option>
+    </select>
+    <br>
+
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>
