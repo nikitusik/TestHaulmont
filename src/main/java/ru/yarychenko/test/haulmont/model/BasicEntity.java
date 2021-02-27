@@ -1,6 +1,7 @@
 package ru.yarychenko.test.haulmont.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -10,7 +11,8 @@ import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
 public abstract class BasicEntity {
     @Id
     @GeneratedValue(generator = "uuid2")

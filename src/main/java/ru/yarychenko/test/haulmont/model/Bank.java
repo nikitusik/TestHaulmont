@@ -1,13 +1,20 @@
 package ru.yarychenko.test.haulmont.model;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "bank")
 public class Bank extends BasicEntity{

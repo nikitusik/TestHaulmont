@@ -41,6 +41,7 @@ public class PaymentScheduleController {
         paymentScheduleService.saveAll(paymentSchedules);
 
         model.addAttribute("graphics", paymentSchedules);
+        model.addAttribute("creditOffer", creditOffer);
 
         return "schedule/list";
     }

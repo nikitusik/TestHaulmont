@@ -1,10 +1,10 @@
-/*C3*/SET SCHEMA PUBLIC
+/*C13*/SET SCHEMA PUBLIC
 drop schema if exists public cascade 
 create table client ( id uuid primary key not null , first_name varchar(30) not null, middle_name varchar(30) not null, last_name varchar(30) not null, mobile_phone numeric(11) not null, email varchar(100) not null, passport numeric(10) not null )
-create table bank ( id uuid primary key not null, client_id uuid not null, credit_id uuid not null )
-create table credit ( id uuid primary key not null, name varchar(100), limit bigint not null, percent float not null )
-create table credit_offer ( id uuid primary key not null, bank_id uuid not null, client_id uuid not null, credit_id uuid not null, sum_credit float not null, month int not null )
-create table payment_schedule ( id uuid primary key not null, date_payment date not null, sum_payment decimal(10, 2) not null, sum_body decimal(10, 2) not null, sum_percent decimal(10, 2) not null, credit_offer_id uuid not null )
+create table credit ( id uuid primary key not null, name varchar(30) not null, limit bigint not null, percent float not null )
+create table bank ( id uuid primary key not null, client_id uuid not null, credit_id uuid not null, foreign key (client_id) references client(id), foreign key (credit_id) references credit(id) )
+create table credit_offer ( id uuid primary key not null, bank_id uuid not null, client_id uuid not null, credit_id uuid not null, sum_credit float not null, month int not null, foreign key (client_id) references client(id), foreign key (credit_id) references credit(id) )
+create table payment_schedule ( id uuid primary key not null, date_payment date not null, sum_payment decimal(10, 2) not null, sum_body decimal(10, 2) not null, sum_percent decimal(10, 2) not null, credit_offer_id uuid not null, foreign key (credit_offer_id) references credit_offer(id) )
 INSERT INTO CLIENT VALUES('24bf8fed-1c50-4590-8b90-5e63c7add510','Sergey','Sergeevich','Sergeev',89023678475,'sergey@gmail.com',123456789)
 COMMIT
 INSERT INTO CLIENT VALUES('945a939d-1845-4f06-9d91-4ee0e6a45362','Ivan','Ivanovich','Ivanov',89026541245,'ivan@gmail.com',1234543356)
@@ -113,22 +113,22 @@ INSERT INTO PAYMENT_SCHEDULE VALUES('ebb9d6c7-9e23-4c20-ad93-3d1309372fff','2021
 COMMIT
 INSERT INTO PAYMENT_SCHEDULE VALUES('efbc6fc1-1411-4aa4-ad22-bc965f3fd42f','2021-06-26',22152.77,20833.33,1319.44,'48de000b-591c-455d-84ee-73ab87c73716')
 COMMIT
-DISCONNECT
-/*C4*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C5*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C6*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C7*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C8*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C9*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C10*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C11*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C12*/SET SCHEMA PUBLIC
-DISCONNECT
+DELETE FROM CLIENT WHERE ID='24bf8fed-1c50-4590-8b90-5e63c7add510'
+INSERT INTO CLIENT VALUES('24bf8fed-1c50-4590-8b90-5e63c7add510','Sergey','Sergeevich','Sergeev',89023678475,'sergey@gmail.com',123456790)
+COMMIT
+DELETE FROM BANK WHERE ID='c238966a-3a90-48c2-a700-156c141c1b9c'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='48595862-8bc8-4216-9f02-58e2ac5fbb87'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='4be5b7a4-f8af-483a-b2c5-0b60bf08209f'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='522c0552-da14-42d6-b07c-05f597834d43'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='5ffb3561-ef84-4887-8eef-13494fe19237'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='635e203a-756d-428c-b239-6205e9f9e9bf'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='6efb60e9-58d3-4daa-9c59-6447ef813184'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='bac8c9ba-1c9e-4e2b-89bd-1e40d4f795df'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='d6f4eb6f-9170-41f8-9114-4ab0b479afab'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='dc394aec-aa69-4253-a469-744ebc4307d5'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='e026c7ed-e36a-4920-8601-0a7b09c4d76e'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='e251f591-6a4c-43e7-878e-f297f60c82ff'
+DELETE FROM PAYMENT_SCHEDULE WHERE ID='efbc6fc1-1411-4aa4-ad22-bc965f3fd42f'
+DELETE FROM CREDIT_OFFER WHERE ID='48de000b-591c-455d-84ee-73ab87c73716'
+DELETE FROM CLIENT WHERE ID='dd1d30b0-a816-43c5-8bac-92adf4fde3a4'
+COMMIT

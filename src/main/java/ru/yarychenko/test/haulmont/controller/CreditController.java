@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.yarychenko.test.haulmont.model.Credit;
+import ru.yarychenko.test.haulmont.service.BankService;
 import ru.yarychenko.test.haulmont.service.CreditService;
 
 import javax.validation.Valid;

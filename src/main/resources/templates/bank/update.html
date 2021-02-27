@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Edit credit</title>
 </head>
 <body>
-<form action="#" th:action="@{/banks/update}" th:object="${bank}" method="post">
+<main>
+    <section class="py-5 text-center container">
+        <div class="container">
 
-    <input type="hidden" th:field="*{id}" id="id">
-    <input type="hidden" th:field="*{credit.id}" id="credit.id">
+            <div class="row">
+                <h3 class="col-md-4">Change client for credit</h3>
+            </div>
 
-<!--    <input type="text" readonly th:value="${bank.getClient().firstName + ' ' + bank.getClient().lastName + ' , passport: ' + bank.getClient().passport}" id="name">-->
+            <br>
+            <form action="#" th:action="@{/banks/update}" th:object="${bank}" method="post">
 
-<!--    <label th:value="${bank.getClient().firstName + ' ' + bank.getClient().lastName + ' , passport: ' + bank.getClient().passport}"></label>-->
-    <label>Select client: </label>
-    <select th:field="*{client.id}">
-        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.firstName + ' ' + client.lastName + ' , passport: ' + client.passport}"></option>
-    </select>
+                <input type="hidden" th:field="*{id}" id="id">
+                <input type="hidden" th:field="*{credit.id}" id="credit.id">
 
-    <input type="submit" value="OK">
-</form>
+                <div class="form-group row">
+                    <label class="form-group col-md-2">Select client: </label>
+                    <select class="form-control col-md-4" th:field="*{client.id}">
+                        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.firstName + ' ' + client.lastName + ' , passport: ' + client.passport}"></option>
+                    </select>
+                    <div style="color:red" th:if="${#fields.hasErrors('client')}" th:errors="*{client}">Client error</div>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-1 col-xs-1">
+                        <a class="btn btn-danger" href="/banks/">Cancel</a>
+                    </div>
+                    <div>
+                        <input class="btn btn-success" type="submit" value="Update">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
 </body>
 </html>

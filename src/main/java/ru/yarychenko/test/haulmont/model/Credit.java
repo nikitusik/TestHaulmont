@@ -1,16 +1,18 @@
 package ru.yarychenko.test.haulmont.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "credit")
@@ -27,4 +29,10 @@ public class Credit extends BasicEntity{
     @NotNull
     @Column(name = "percent")
     private Double percent;
+
+    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL)
+    private List<Bank> banks;
+
+    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL)
+    private List<CreditOffer> creditOffers;
 }

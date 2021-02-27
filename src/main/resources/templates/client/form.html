@@ -1,45 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Create and edit client</title>
 </head>
 <body>
-<form action="#" th:action="@{/clients/{path}(path=${path})}" th:object="${client}" method="post">
+<main>
+    <section class="py-5 text-center container">
+        <div class="container">
 
-    <input type="hidden" th:field="*{id}" id="id">
+            <h3 class="row col-md-4"><span th:utext="${'Client '+ path}"></span></h3>
+            <br>
 
-    <label for="firstName">First name: </label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="Enter first name">
-    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</div>
-    <br>
+            <form action="#" th:action="@{/clients/{path}(path=${path})}" th:object="${client}" method="post">
 
-    <label for="middleName">Middle name: </label>
-    <input type="text" th:field="*{middleName}" id="middleName" placeholder="Enter middle name">
-    <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle name error</div>
-    <br>
+                <input type="hidden" th:field="*{id}" id="id">
 
-    <label for="lastName">Last name: </label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Enter last name">
-    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</div>
-    <br>
+                <div class="form-group row">
+                    <label class="form-group col-md-2" for="firstName">First name: </label>
+                    <input class="form-control col-md-4" type="text" maxlength="30" th:field="*{firstName}" id="firstName" placeholder="Enter first name">
+                    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name
+                        error
+                    </div>
+                    <br>
+                </div>
 
-    <label for="mobilePhone">Mobile Phone: </label>
-    <input type="number" maxlength="11" th:field="*{mobilePhone}" id="mobilePhone" placeholder="Enter phone">
-    <div style="color:red" th:if="${#fields.hasErrors('mobilePhone')}" th:errors="*{mobilePhone}">Mobile phone error</div>
-    <br>
+                <div class="form-group row">
+                    <label class="form-group col-md-2" for="middleName">Middle name: </label>
+                    <input class="form-control col-md-4" type="text" maxlength="30" th:field="*{middleName}" id="middleName"
+                           placeholder="Enter middle name">
+                    <div style="color:red" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}">Middle name
+                        error
+                    </div>
+                    <br>
+                </div>
 
-    <label for="email">Email: </label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Enter email">
-    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
-    <br>
+                <div class="form-group row">
+                    <label class="form-group col-md-2" for="lastName">Last name: </label>
+                    <input class="form-control col-md-4" type="text" maxlength="30" th:field="*{lastName}" id="lastName" placeholder="Enter last name">
+                    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name
+                        error
+                    </div>
+                    <br>
+                </div>
 
-    <label for="passport">Passport: </label>
-    <input type="number" maxlength="10" th:field="*{passport}" id="passport" placeholder="Enter passport">
-    <div style="color:red" th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}">Passport error</div>
-    <br>
+                <div class="form-group row">
+                    <label class="form-group col-md-2" for="mobilePhone">Mobile Phone: </label>
+                    <input class="form-control col-md-4" type="number" maxlength="11" th:field="*{mobilePhone}" id="mobilePhone"
+                           placeholder="Enter phone">
+                    <div style="color:red" th:if="${#fields.hasErrors('mobilePhone')}" th:errors="*{mobilePhone}">Mobile
+                        phone error
+                    </div>
+                    <br>
+                </div>
 
-    <input type="submit" value="OK">
-</form>
+                <div class="form-group row">
+                    <label class="form-group col-md-2" for="email">Email: </label>
+                    <input class="form-control col-md-4" type="text" maxlength="100" th:field="*{email}" id="email" placeholder="Enter email">
+                    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+                    <br>
+                </div>
+
+                <div class="form-group row">
+                    <label class="form-group col-md-2" for="passport">Passport: </label>
+                    <input class="form-control col-md-4" type="number" maxlength="10" th:field="*{passport}" id="passport" placeholder="Enter passport">
+                    <div style="color:red" th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}">Passport error
+                    </div>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-1 col-xs-1">
+                        <a class="btn btn-danger" href="/clients/">Cancel</a>
+                    </div>
+                    <div>
+                        <input class="btn btn-success" type="submit" th:value="${#strings.capitalize(path)}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
 </body>
 </html>

@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Apply new credit</title>
 </head>
 <body>
-<form action="#" th:action="@{/banks/create}" th:object="${bank}" method="post">
+<main>
+    <section class="py-5 text-center container">
+        <div class="container">
 
-    <label>Select client: </label>
-    <select th:field="*{client.id}">
-        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.firstName + ' ' + client.lastName + ' , passport: ' + client.passport}"></option>
-    </select>
-    <div style="color:red" th:if="${#fields.hasErrors('client')}" th:errors="*{client}">Client error</div>
-    <br>
+            <div class="row">
+                <h3 class="col-md-4">Choose client and credit </h3>
+            </div>
 
+            <br>
+            <form action="#" th:action="@{/banks/create}" th:object="${bank}" method="post">
 
-    <label>Select credit: </label>
-    <select th:field="*{credit.id}">
-        <option th:each="credit : ${credits}" th:value="${credit.id}" th:text="${credit.name}"></option>
-    </select>
-    <br>
+                <div class="form-group row">
+                    <label class="form-group col-md-2">Select client: </label>
+                    <select class="form-control col-md-4" th:field="*{client.id}">
+                        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.firstName + ' ' + client.lastName + ' , passport: ' + client.passport}"></option>
+                    </select>
+                    <div style="color:red" th:if="${#fields.hasErrors('client')}" th:errors="*{client}">Client error</div>
+                    <br>
+                </div>
 
-    <input type="submit" value="OK">
-</form>
+                <div class="form-group row">
+                    <label class="form-group col-md-2">Select credit: </label>
+                    <select class="form-control col-md-4" th:field="*{credit.id}">
+                        <option th:each="credit : ${credits}" th:value="${credit.id}" th:text="${credit.name}"></option>
+                    </select>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-1 col-xs-1">
+                        <a class="btn btn-danger" href="/banks/">Cancel</a>
+                    </div>
+                    <div>
+                        <input class="btn btn-success" type="submit" value="Next">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
 </body>
 </html>

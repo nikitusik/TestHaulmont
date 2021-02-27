@@ -99,6 +99,7 @@ public class BankController {
         CreditOffer creditOffer = creditOfferService.findCreditOfferByBankId(id);
         List<PaymentSchedule> paymentSchedules = paymentScheduleService.findByCreditOffer(creditOffer);
         model.addAttribute("graphics", paymentSchedules);
+        model.addAttribute("creditOffer", creditOffer);
         return "schedule/list";
     }
 }

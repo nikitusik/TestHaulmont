@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>Payment Schedule</h1>
-<table>
+<h1 class="col-md-4 col-sm-1 col-xs-1">Payment Schedule</h1>
+<main>
+    <section class="py-2 container">
+        <div class="container">
+            <div class="row">
+                <h6 class="col-md-2">Client: </h6>
+                <span th:utext="${creditOffer.client.firstName + ' ' + creditOffer.client.middleName + ' ' + creditOffer.client.LastName}"></span>
+            </div>
+
+            <div class="row">
+                <h6 class="col-md-2 col-sm-1 col-xs-1">Passport: </h6>
+                <span th:utext="${creditOffer.client.passport}"></span>
+            </div>
+
+            <div class="row">
+                <h6 class="col-md-2">Credit name: </h6>
+                <span th:utext="${creditOffer.credit.name}"></span>
+            </div>
+
+            <div class="row">
+                <h6 class="col-md-2">Percent of credit: </h6>
+                <span th:utext="${creditOffer.credit.percent}"></span>
+            </div>
+
+            <div class="row">
+                <h6 class="col-md-2">Months of credit: </h6>
+                <span th:utext="${creditOffer.month}"></span>
+            </div>
+
+            <div class="row">
+                <h6 class="col-md-2">Sum of credit: </h6>
+                <span th:utext="${creditOffer.sumCredit}"></span>
+            </div>
+
+            <div class="row">
+                <h6 class="col-md-2">Total sum with percents: </h6>
+                <span th:utext="${#aggregates.sum(graphics.![sumPayment])}"></span>
+            </div>
+        </div>
+    </section>
+</main>
+
+<a class="btn btn-danger btn-lg btn-block" role="button" href="/banks/">Bank</a>
+<br>
+<table class="table table-bordered table-sm">
     <thead>
-    <tr>
+    <tr class="table-info">
         <th>Date</th>
         <th>Payment</th>
         <th>Body credit</th>

@@ -10,19 +10,21 @@ create table client
     passport numeric(10) not null
 );
 
+create table credit
+(
+    id uuid primary key not null,
+    name varchar(30) not null,
+    limit bigint not null,
+    percent float not null
+);
+
 create table bank
 (
     id uuid primary key not null,
     client_id uuid not null,
-    credit_id uuid not null
-);
-
-create table credit
-(
-    id uuid primary key not null,
-    name varchar(100),
-    limit bigint not null,
-    percent float not null
+    credit_id uuid not null,
+    foreign key (client_id) references client(id),
+    foreign key (credit_id) references credit(id)
 );
 
 create table credit_offer
@@ -32,7 +34,9 @@ create table credit_offer
     client_id uuid not null,
     credit_id uuid not null,
     sum_credit float not null,
-    month int not null
+    month int not null,
+    foreign key (client_id) references client(id),
+    foreign key (credit_id) references credit(id)
 );
 
 create table payment_schedule
@@ -42,5 +46,6 @@ create table payment_schedule
     sum_payment decimal(10, 2) not null,
     sum_body decimal(10, 2) not null,
     sum_percent decimal(10, 2) not null,
-    credit_offer_id uuid not null
+    credit_offer_id uuid not null,
+    foreign key (credit_offer_id) references credit_offer(id)
 );
